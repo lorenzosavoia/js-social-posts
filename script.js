@@ -12,7 +12,7 @@ const arrayData = [
         data: '5 / 21 / 2021',
         postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         image: 'https://unsplash.it/600/300?',
-        likesNumber: 70,
+        likesNumber: 96,
     },
     {
         nomeAutore: 'Lorenzo Savoia',
@@ -20,7 +20,7 @@ const arrayData = [
         data: '12 / 25 / 2021',
         postText: 'Buon Natale a tutti i ragazzi di boolean',
         image: 'https://unsplash.it/600/300?',
-        likesNumber: 70,
+        likesNumber: 12,
     },
     {
         nomeAutore: 'Matteo La Cara',
@@ -28,7 +28,7 @@ const arrayData = [
         data: '10 / 1 / 2021',
         postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         image: 'https://unsplash.it/600/300?',
-        likesNumber: 70,
+        likesNumber: 60,
     },
     {
         nomeAutore: 'Diego Marenghi',
@@ -36,12 +36,13 @@ const arrayData = [
         data: '7 / 15 / 2021',
         postText: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         image: 'https://unsplash.it/600/300?',
-        likesNumber: 70,
+        likesNumber: 23,
     },
     
 ];
 
-const container = document.getElementById('container')
+const container = document.getElementById('container');
+
 
 for (let i = 0; i < arrayData.length; i++) {
     const element = arrayData[i];
@@ -65,7 +66,7 @@ for (let i = 0; i < arrayData.length; i++) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button"  data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -78,5 +79,26 @@ for (let i = 0; i < arrayData.length; i++) {
         </div>
     
     `
-    container.innerHTML += postTemplate;  
+    container.innerHTML += postTemplate;
+
 }
+
+
+
+const button = document.querySelectorAll('.js-like-button');
+let likeNumber = document.querySelectorAll('.js-likes-counter');
+for (let i = 0; i < arrayData.length; i++) {
+
+    button[i].addEventListener('click', function(){
+        button[i].classList.toggle('like-button--liked')
+        if (button[i].classList.contains('like-button--liked') == true) {
+            likeNumber[i].innerHTML = arrayData[i].likesNumber += 1;
+        }else{
+            likeNumber[i].innerHTML = arrayData[i].likesNumber -= 1;
+        }
+        
+    }); 
+}
+
+
+
